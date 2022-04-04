@@ -5,10 +5,10 @@ describe('scénario de test d\'inscription échouée', () => {
         cy.contains('C\'est OK pour moi').click();
     });
     it('Remplit mal le formulaire', () => {
-        cy.get('#firstName').type('Hello');
-        cy.get('#lastName').type('World');
-        cy.get('#signup-email').type('Hello');
-        cy.get('#signup-password').type('World');
+        cy.get('#firstName').type('TOTO');
+        cy.get('#lastName').type('JUST');
+        cy.get('#signup-email').type('TOTOyopmail');
+        cy.get('#signup-password').type('AZERTY');
         cy.get('._1FlppYfmmZAXDcViZEJC9j form').submit();
     });    
     it('Tente de visiter la page profile', () => {
