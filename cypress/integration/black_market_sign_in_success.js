@@ -18,7 +18,7 @@ describe('scénario de test d\'inscription réussie', () => {
         cy.visit('/dashboard/profile');        
         cy.url().should('be.not.equal', 'https://preprod.backmarket.fr/register?next=%2Fdashboard%2Fprofile');
         cy.contains('C\'est OK pour moi').click();
-        cy.contains(`toto${totoNb}@yopmail.com`).should('exist');
+        cy.contains(`toto${totoNb}@yopmail.com`).should('to.exist');
     });
     
 })
