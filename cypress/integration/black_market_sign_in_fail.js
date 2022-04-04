@@ -1,3 +1,4 @@
+
 describe('scénario de test d\'inscription échouée', () => {
 
     it('Visit la page', () => { cy.visit('/register') });
