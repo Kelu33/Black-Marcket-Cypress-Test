@@ -1,11 +1,11 @@
 /// <reference types="cypress" />
 
 const totoNb = Math.floor(Math.random() * 100000000)
+const baseUrl = "https://preprod.backmarket.fr"
 
 describe('scénario de test d\'inscription réussie', () => {
 
     it('Remplir le formulaire et verifier le compte', () => {
-        cy.clearCookies()
         cy.visit('/register')
         cy.get('[data-qa="accept-cta"]').click()
         cy.get('#firstName').type(`TOTO${totoNb}`)
@@ -13,12 +13,11 @@ describe('scénario de test d\'inscription réussie', () => {
         cy.get('#signup-email').type(`toto${totoNb}@yopmail.com`)
         cy.get('#signup-password').type('AZERTYazerty1234')
         cy.get('[data-test="signup-component"] form').submit()
-        cy.clearCookies()
+        cy.wait(1000)
         cy.visit('/dashboard/profile')
-        cy.get('[data-qa="accept-cta"]').click()
         cy.url().should(
             'be.not.equal',
-            'https://preprod.backmarket.fr/register?next=%2Fdashboard%2Fprofile'
+            baseUrl + '/register?next=%2Fdashboard%2Fprofile'
             )
         cy.contains(`toto${totoNb}@yopmail.com`).should('to.exist')
         cy.get('[aria-label="Sous-menu utilisateur"]').click()
@@ -32,9 +31,12 @@ describe('scénario de test d\'inscription réussie', () => {
         cy.get('#signin-email').type(`toto${totoNb}@yopmail.com`)
         cy.get('#signin-password').type('AZERTYazerty1234')
         cy.get('[data-qa="signin-submit-button"]').click()
-        cy.clearCookies()
+        cy.wait(1000)
         cy.visit('/dashboard/profile')
-        cy.get('[data-qa="accept-cta"]').click()
+        cy.url().should(
+            'be.not.equal',
+            baseUrl + '/register?next=%2Fdashboard%2Fprofile'
+            )
         cy.contains(`toto${totoNb}@yopmail.com`).should('to.exist')
     
     })
